@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WinningProd V2 Test Suite</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        .test-section { margin-bottom: 2em; }
+        .test-result { margin: 0.5em 0; }
+        .success { color: green; }
+        .fail { color: red; }
+        .pending { color: #888; }
+        .test-btn { margin-left: 1em; }
+    </style>
+    <script type="module">
+        import * as API from './js/api-client.js';
+
+        async function runTest(name, fn) {
+            const resultEl = document.getElementById('result-' + name);
+            resultEl.textContent = 'Running...';
+            resultEl.className = 'test-result pending';
+            try {
+                await fn();
+                resultEl.textContent = 'Success';
+                resultEl.className = 'test-result success';
+            } catch (e) {
+                resultEl.textContent = 'Fail: ' + (e.message || e);
+                resultEl.className = 'test-result fail';
+            }
+        }
+
+        window.runAllTests = function() {
+            runTest('uploadcsv', async () => {
+                // Simulate CSV upload (mock or use a test file)
+                // await API.apiRequest({ ... });
+            });
+            runTest('analyzeimage', async () => {
+                // Simulate image analysis (mock or use a test image)
+                // await API.apiRequest({ ... });
+            });
+            runTest('getphones', async () => {
+                const res = await API.apiRequest({ url: 'get-phones.php', method: 'GET' });
+                if (!res.data || !Array.isArray(res.data)) throw new Error('No phone data');
+            });
+            runTest('distribute', async () => {
+                // Simulate distribution (mock or use test data)
+                // await API.apiRequest({ ... });
+            });
+        };
+    </script>
+</head>
+<body>
+    <h1>WinningProd V2 Test Suite</h1>
+
+    <div class="test-section">
+        <h2>API Endpoint Tests</h2>
+        <div>
+            Upload CSV: <span id="result-uploadcsv" class="test-result pending">Pending</span>
+            <button class="test-btn" onclick="runTest('uploadcsv', async () => {/*...*/})">Test</button>
+        </div>
+        <div>
+            Analyze Image: <span id="result-analyzeimage" class="test-result pending">Pending</span>
+            <button class="test-btn" onclick="runTest('analyzeimage', async () => {/*...*/})">Test</button>
+        </div>
+        <div>
+            Get Phones: <span id="result-getphones" class="test-result pending">Pending</span>
+            <button class="test-btn" onclick="runTest('getphones', async () => {/*...*/})">Test</button>
+        </div>
+        <div>
+            Distribute: <span id="result-distribute" class="test-result pending">Pending</span>
+            <button class="test-btn" onclick="runTest('distribute', async () => {/*...*/})">Test</button>
+        </div>
+        <button onclick="runAllTests()">Run All Tests</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Component UI Tests</h2>
+        <ul>
+            <li>Navbar 1: <button onclick="alert('Manual: Test CSV upload, rank input, and KIRIM button.');">Manual Test</button></li>
+            <li>Navbar 2: <button onclick="alert('Manual: Test screenshot upload, analysis, and approve.');">Manual Test</button></li>
+            <li>Navbar 3: <button onclick="alert('Manual: Test threshold, batch distribution, and WhatsApp link.');">Manual Test</button></li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Performance Metrics</h2>
+        <button onclick="alert('Manual: Use browser dev tools to measure API and UI performance.');">How to Measure</button>

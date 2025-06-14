@@ -1,64 +1,48 @@
-// ===============================
-// Helper: Load external HTML into a container
-// ===============================
-function loadComponent(containerId, htmlPath) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  fetch(htmlPath, { cache: "no-store" })
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return response.text();
-    })
-    .then(html => {
-      container.innerHTML = html;
-    })
-    .catch(error => {
-      container.innerHTML = `<div class="notification toast">Gagal memuat komponen: ${htmlPath}</div>`;
-      console.error(`Error loading ${htmlPath}:`, error);
-    });
-}
+// File: js/main.js
+// Tambahkan di bagian bawah setelah window.onload
 
-// ===============================
-// Modular: Prepare per-navbar logic objects
-// ===============================
-window.Navbar1 = {
-  // Add Navbar 1 logic here (event handlers, filtering, etc)
-};
-window.Navbar2 = {
-  // Add Navbar 2 logic here (event handlers, progress, etc)
-};
-window.Navbar3 = {
-  // Add Navbar 3 logic here (event handlers, WhatsApp, etc)
+// Global state management
+window.AppState = {
+  currentSessionId: null,
+  navbar1Data: null,
+  navbar2Progress: {
+    currentBatch: 1,
+    currentScreenshot: 1,
+    totalBatches: 0
+  },
+  navbar3Data: {
+    threshold: 0,
+    batches: []
+  }
 };
 
-// ===============================
-// Main: Load all navbars after window loads
-// ===============================
-window.onload = function () {
-  // Load Navbar 1
-  loadComponent('navbar1-container', 'components/navbar1.html').then(() => {
-    // Init Navbar 1 logic here if needed
-    // window.Navbar1.init && window.Navbar1.init();
-  });
-
-  // Load Navbar 2
-  loadComponent('navbar2-container', 'components/navbar2.html').then(() => {
-    // Init Navbar 2 logic here if needed
-    // window.Navbar2.init && window.Navbar2.init();
-  });
-
-  // Load Navbar 3
-  loadComponent('navbar3-container', 'components/navbar3.html').then(() => {
-    // Init Navbar 3 logic here if needed
-    // window.Navbar3.init && window.Navbar3.init();
-  });
+// Inter-navbar communication
+window.AppEvents = {
+  // Navbar 1 -> Navbar 2: After CSV processed
+  onCSVProcessed: function(data) {
+    window.AppState.currentSessionId = data.session_id;
+    window.AppState.navbar1Data = data;
+    window.Navbar2.initialize(data);
+  },
+  
+  // Navbar 2 -> Navbar 1: Update commission
+  onCommissionApproved: function(productId, commission) {
+    window.Navbar1.updateCommission(productId, commission);
+  },
+  
+  // Navbar 1 -> Navbar 3: Send links for distribution
+  onSendToDistribution: function(data) {
+    window.AppState.navbar3Data.batches = data.batches;
+    window.Navbar3.initialize(data);
+    window.Navbar1.reset();
+    window.Navbar2.reset();
+  }
 };
 
-// ===============================
-// Export helper for global use
-// ===============================
-window.loadComponent = loadComponent;
-
-// ===============================
-// End of main.js
-//
+// Initialize sequence
+window.addEventListener('DOMContentLoaded', function() {
+  // Initialize all navbars with proper state management
+  if (window.Navbar1) window.Navbar1.init();
+  if (window.Navbar2) window.Navbar2.init();
+  if (window.Navbar3) window.Navbar3.init();
+});

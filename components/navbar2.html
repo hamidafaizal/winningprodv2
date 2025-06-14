@@ -1,18 +1,35 @@
 <section class="navbar2 glassmorphic-section">
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" data-loading="navbar2" hidden>
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Menganalisa gambar...</p>
+  </div>
+
   <div class="navbar2-content">
     <h2 class="section-title">
       KOMREG - Analisa Komisi Screenshot
-      <span class="tooltip" data-tooltip="Unggah screenshot produk, lalu setujui hasil analisa AI untuk mengisi data komisi.">&#9432;</span>
+      <span
+        class="tooltip"
+        data-tooltip="Unggah screenshot Shopee, deteksi komisi produk secara otomatis."
+      >&#9432;</span>
     </h2>
 
     <div class="batch-indicator" data-batch-indicator>
-      </div>
+      Batch <span data-batch-number>1</span>: Link <span data-batch-range>1-100</span>
+    </div>
+
+    <!-- Batch Progress Bar -->
+    <div class="batch-progress-bar">
+      <div class="progress-fill" data-progress-fill></div>
+      <span class="progress-text">0/25</span>
+    </div>
 
     <div
       class="image-upload-area"
       data-upload="screenshots"
       tabindex="0"
       aria-label="Drag & drop screenshot images here or click to select"
+      title="Upload screenshot batch (4 produk/gambar)"
     >
       <input
         type="file"
@@ -26,34 +43,60 @@
       <div class="upload-instructions">
         <span class="upload-icon" aria-hidden="true">&#128247;</span>
         <span>
-          Drag & drop screenshot di sini, atau <span class="upload-link">klik untuk memilih</span>
+          Drag & drop screenshot JPG/PNG di sini, atau <span class="upload-link">klik untuk memilih</span>
         </span>
         <span class="helper-text">
-          Upload per batch sesuai instruksi (1 batch = 25 SS) 
+          Maksimal 25 gambar per batch.
         </span>
       </div>
+    </div>
+
+    <div class="image-preview-grid" data-preview-grid>
+      <!-- Image cards rendered here -->
     </div>
 
     <button
-      class="btn btn-gradient btn-analisa"
+      class="btn btn-gradient btn-analisa pulse"
       data-action="analisa"
+      data-state="enabled"
+      aria-busy="false"
     >
-      ANALISA 
+      <span class="btn-spinner" hidden></span>
+      ANALISA
     </button>
 
-    <div class="analysis-results-area" data-komisi-results hidden>
-      </div>
-          <button class="btn btn-approve" data-action="approve">APPROVE</button>
-        </div>
+    <!-- Analysis Status Indicators -->
+    <div class="analysis-status">
+      <div class="status-success" hidden>✓ Berhasil</div>
+      <div class="status-error" hidden>✗ Gagal</div>
+      <div class="status-waiting" hidden>⏳ Menunggu</div>
+    </div>
 
-        Struktur jika analisa GAGAL (Contoh):
-        <div class="komisi-result-card" data-status="error">
-           <p>AI gagal membaca SS ini. WAJIB upload ulang. </p>
-           <button class="btn" data-action="re-upload">Upload Ulang</button>
+    <div class="komisi-results-table" data-komisi-results hidden>
+      <!-- Example result structure:
+      <div class="komisi-result-card" data-result-index="1">
+        <div class="result-header">
+          <span class="result-image-thumb"><img src="..." alt="Preview" /></span>
+          <span class="result-title">Screenshot 1</span>
         </div>
+        <ul class="komisi-list">
+          <li>
+            Produk 1: <span class="komisi-value" data-komisi-value>Rp 10.000</span>
+          </li>
+        </ul>
+        <button
+          class="btn btn-approve"
+          data-action="approve"
+          data-result-index="1"
+          title="Setujui dan lanjut ke screenshot berikutnya"
+        >
+          APPROVE
+        </button>
+      </div>
       -->
     </div>
-    
-    <div class="notifications" data-notifications></div>
   </div>
+
+  <!-- Notification Container -->
+  <div class="notification-container" data-notifications></div>
 </section>

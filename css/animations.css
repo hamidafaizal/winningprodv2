@@ -1,0 +1,40 @@
+/* Pie Chart Drawing Animation */
+@keyframes pieChartDraw {
+  0% { stroke-dasharray: 0 999; }
+  100% { stroke-dasharray: 314 999; }
+}
+
+/* Batch Card Removal Animation */
+@keyframes batchRemove {
+  0% { opacity: 1; transform: translateX(0) scale(1);}
+  100% { opacity: 0; transform: translateX(60px) scale(0.95);}
+}
+
+/* Commission Update Highlight */
+@keyframes commissionHighlight {
+  0% { background: #fffbe6; }
+  50% { background: #6dd5ed44; }
+  100% { background: rgba(255,255,255,0.14);}
+}
+
+/* Progress Bar Fill */
+@keyframes progressBarFill {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+/* Success Checkmark */
+@keyframes successCheck {
+  0% { stroke-dashoffset: 22; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Error Shake Effect */
+@keyframes errorShake {
+  0% { transform: translateX(0);}
+  20% { transform: translateX(-8px);}
+  40% { transform: translateX(8px);}
+  60% { transform: translateX(-6px);}
+  80% { transform: translateX(6px);}
+  100% { transform: translateX(0);}
+}

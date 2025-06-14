@@ -1,15 +1,27 @@
 <section class="navbar1 glassmorphic-section">
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" data-loading="navbar1" hidden>
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Memproses CSV...</p>
+  </div>
+
   <div class="navbar1-content">
     <h2 class="section-title">
       Upload CSV - Filter Produk
-      <span class="tooltip" data-tooltip="Unggah file CSV, filter produk berdasarkan Tren & Rank, lalu acak hasilnya.">&#9432;</span>
+      <span
+        class="tooltip"
+        data-tooltip="Unggah file CSV berisi daftar produk. Filter produk berdasarkan Rank."
+      >&#9432;</span>
     </h2>
 
     <form class="filter-form" data-form="upload-csv">
       <div class="form-group">
         <label for="rank-input" class="form-label">
           Rank
-          <span class="tooltip" data-tooltip="Ambil produk teratas dari Tren NAIK & isAd='No' berdasarkan penjualan.">&#9432;</span>
+          <span
+            class="tooltip"
+            data-tooltip="Jumlah produk top dari setiap kategori"
+          >&#9432;</span>
         </label>
         <input
           type="number"
@@ -17,11 +29,12 @@
           name="rank"
           min="1"
           class="input input-rank"
-          placeholder="Masukkan jumlah rank"
+          placeholder="Masukkan jumlah produk"
           data-input="rank"
           required
         />
       </div>
+
       <div
         class="csv-upload-area"
         data-upload="csv"
@@ -47,45 +60,99 @@
           </span>
         </div>
       </div>
+
       <button
         type="submit"
         class="btn btn-gradient btn-proses"
         data-action="proses"
+        data-state="enabled"
+        aria-busy="false"
+        title="Filter dan acak produk dari CSV"
       >
+        <span class="btn-spinner" hidden></span>
         PROSES
+        <span class="tooltip" data-tooltip="Filter dan acak produk dari CSV">&#9432;</span>
       </button>
     </form>
 
-    <div class="results-section" data-results hidden>
+    <div class="results-section fade-in" data-results hidden>
       <div class="results-header">
         <h3>Hasil Filter Produk</h3>
+        <button
+          class="btn btn-reset"
+          data-action="reset"
+          data-state="enabled"
+          aria-busy="false"
+          title="Reset hasil dan unggahan"
+        >
+          <span class="btn-spinner" hidden></span>
+          RESET
+        </button>
       </div>
+
+      <!-- Success/Error Message Boxes -->
+      <div class="message-box success-box slide-up" data-success hidden></div>
+      <div class="message-box error-box slide-up" data-error hidden></div>
 
       <ol class="product-list" data-list="products">
-        </ol>
-
-      <div class="results-actions">
-        <div class="batch-copy-buttons" data-batch-actions>
-          </div>
-
-        <div class="main-actions">
-          <button
-            class="btn btn-reset"
-            data-action="reset"
-            aria-label="Reset hasil dan unggahan"
+        <!-- Product items rendered here -->
+        <!--
+        <li class="product-item" data-product-id="..." data-product-index="1">
+          <span class="product-number">1.</span>
+          <a
+            href="https://example.com/product"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="product-link"
+            data-product-link
           >
-            RESET
-          </button>
-          
-          <button
-            class="btn btn-gradient btn-send"
-            data-action="kirim"
-            hidden
-          >
-            KIRIM
-          </button>
-        </div>
+            https://example.com/product
+          </a>
+          <span class="komisi-label">Komisi:</span>
+          <input
+            type="text"
+            class="komisi-value input"
+            data-komisi
+            placeholder="Isi komisi..."
+            title="Isi komisi produk"
+          />
+        </li>
+        -->
+      </ol>
+      <div class="batch-actions" data-batch-actions>
+        <!--
+        <button
+          class="btn btn-copy"
+          data-action="copy-batch"
+          data-batch-index="1"
+          data-state="enabled"
+          aria-busy="false"
+          title="Salin 100 link ke clipboard"
+        >
+          <span class="btn-spinner" hidden></span>
+          COPY Batch 1
+          <span class="tooltip" data-tooltip="Salin 100 link ke clipboard">&#9432;</span>
+        </button>
+        -->
       </div>
+      <!-- KIRIM button (shown when all komisi filled) -->
+      <button
+        class="btn btn-gradient btn-kirim"
+        data-action="kirim"
+        data-state="disabled"
+        aria-busy="false"
+        title="Kirim ke proses distribusi"
+        hidden
+      >
+        <span class="btn-spinner" hidden></span>
+        KIRIM
+        <span class="tooltip" data-tooltip="Kirim ke proses distribusi">&#9432;</span>
+      </button>
     </div>
+  </div>
+
+  <!-- Notification Container -->
+  <div class="notification-container" data-notifications>
+    <!-- Notifications will be injected here by JavaScript -->
   </div>
 </section>
