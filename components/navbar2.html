@@ -1,0 +1,59 @@
+<section class="navbar2 glassmorphic-section">
+  <div class="navbar2-content">
+    <h2 class="section-title">
+      KOMREG - Analisa Komisi Screenshot
+      <span class="tooltip" data-tooltip="Unggah screenshot produk, lalu setujui hasil analisa AI untuk mengisi data komisi.">&#9432;</span>
+    </h2>
+
+    <div class="batch-indicator" data-batch-indicator>
+      </div>
+
+    <div
+      class="image-upload-area"
+      data-upload="screenshots"
+      tabindex="0"
+      aria-label="Drag & drop screenshot images here or click to select"
+    >
+      <input
+        type="file"
+        accept="image/png, image/jpeg"
+        multiple
+        class="image-file-input"
+        data-input="screenshots"
+        aria-label="Pilih gambar screenshot"
+        hidden
+      />
+      <div class="upload-instructions">
+        <span class="upload-icon" aria-hidden="true">&#128247;</span>
+        <span>
+          Drag & drop screenshot di sini, atau <span class="upload-link">klik untuk memilih</span>
+        </span>
+        <span class="helper-text">
+          Upload per batch sesuai instruksi (1 batch = 25 SS) 
+        </span>
+      </div>
+    </div>
+
+    <button
+      class="btn btn-gradient btn-analisa"
+      data-action="analisa"
+    >
+      ANALISA 
+    </button>
+
+    <div class="analysis-results-area" data-komisi-results hidden>
+      </div>
+          <button class="btn btn-approve" data-action="approve">APPROVE</button>
+        </div>
+
+        Struktur jika analisa GAGAL (Contoh):
+        <div class="komisi-result-card" data-status="error">
+           <p>AI gagal membaca SS ini. WAJIB upload ulang. </p>
+           <button class="btn" data-action="re-upload">Upload Ulang</button>
+        </div>
+      -->
+    </div>
+    
+    <div class="notifications" data-notifications></div>
+  </div>
+</section>

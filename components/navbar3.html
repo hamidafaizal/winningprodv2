@@ -1,0 +1,59 @@
+<section class="navbar3 glassmorphic-section">
+  <div class="navbar3-content">
+    <h2 class="section-title">
+      Distribusi Link ke WhatsApp
+      <span class="tooltip" data-tooltip="Setelah link dari Navbar 1 masuk, bagi link ke dalam batch dan kirim ke WhatsApp.">&#9432;</span>
+    </h2>
+
+    <div class="distribution-container">
+    
+      <div class="progress-info-area" data-progress-area>
+        <div class="progress-chart" data-progress-chart>
+          </div>
+        <div class="threshold-info">
+          <label for="threshold-input" class="form-label">
+            Input Threshold
+            <span class="tooltip" data-tooltip="Wajib diisi. Jumlah link per batch (misal: 100). Tanpa ini, semua proses nonaktif. ">&#9432;</span>
+          </label>
+          <input
+            type="number"
+            id="threshold-input"
+            class="input input-threshold"
+            data-input="threshold"
+            min="1"
+            placeholder="Contoh: 100"
+            required
+          />
+          </div>
+      </div>
+
+      <div class="batches-area" data-batches-area hidden>
+        <div class="batches-header">
+          <h3 class="batches-title">Batch Distribusi Link</h3>
+        </div>
+        <div class="batches-list" data-batches-list>
+          </select>
+                <button class="btn btn-gradient btn-send-batch" data-action="distribute-batch">KIRIM</button>
+              </div>
+            </div>
+
+            Contoh Kartu Batch (Belum Penuh):
+            <div class="batch-card" data-status="waiting">
+              <div class="batch-card-header">
+                <h4>Batch 2</h4>
+                <span class="batch-progress-info">Kurang 7 link lagi</span> </div>
+              <div class="batch-card-body">
+                 <select class="dropdown" disabled>
+                   <option>-- Menunggu batch penuh --</option>
+                 </select>
+                 <button class="btn" disabled>KIRIM</button> </div>
+            </div>
+          -->
+        </div>
+      </div>
+    </div>
+    
+    <div class="notifications" data-notifications>
+      </div>
+  </div>
+</section>

@@ -1,0 +1,91 @@
+<section class="navbar1 glassmorphic-section">
+  <div class="navbar1-content">
+    <h2 class="section-title">
+      Upload CSV - Filter Produk
+      <span class="tooltip" data-tooltip="Unggah file CSV, filter produk berdasarkan Tren & Rank, lalu acak hasilnya.">&#9432;</span>
+    </h2>
+
+    <form class="filter-form" data-form="upload-csv">
+      <div class="form-group">
+        <label for="rank-input" class="form-label">
+          Rank
+          <span class="tooltip" data-tooltip="Ambil produk teratas dari Tren NAIK & isAd='No' berdasarkan penjualan.">&#9432;</span>
+        </label>
+        <input
+          type="number"
+          id="rank-input"
+          name="rank"
+          min="1"
+          class="input input-rank"
+          placeholder="Masukkan jumlah rank"
+          data-input="rank"
+          required
+        />
+      </div>
+      <div
+        class="csv-upload-area"
+        data-upload="csv"
+        tabindex="0"
+        aria-label="Drag & drop CSV files here or click to select"
+      >
+        <input
+          type="file"
+          accept=".csv"
+          multiple
+          class="csv-file-input"
+          data-input="csv"
+          aria-label="Pilih file CSV"
+          hidden
+        />
+        <div class="upload-instructions">
+          <span class="upload-icon" aria-hidden="true">&#8682;</span>
+          <span>
+            Drag & drop file CSV di sini, atau <span class="upload-link">klik untuk memilih</span>
+          </span>
+          <span class="helper-text">
+            Mendukung beberapa file sekaligus.
+          </span>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-gradient btn-proses"
+        data-action="proses"
+      >
+        PROSES
+      </button>
+    </form>
+
+    <div class="results-section" data-results hidden>
+      <div class="results-header">
+        <h3>Hasil Filter Produk</h3>
+      </div>
+
+      <ol class="product-list" data-list="products">
+        </ol>
+
+      <div class="results-actions">
+        <div class="batch-copy-buttons" data-batch-actions>
+          </div>
+
+        <div class="main-actions">
+          <button
+            class="btn btn-reset"
+            data-action="reset"
+            aria-label="Reset hasil dan unggahan"
+          >
+            RESET
+          </button>
+          
+          <button
+            class="btn btn-gradient btn-send"
+            data-action="kirim"
+            hidden
+          >
+            KIRIM
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
