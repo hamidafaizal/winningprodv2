@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>WinningProd V2</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+    <!-- Animated glassmorphic background layer -->
+    <div class="main-bg" aria-hidden="true"></div>
+
+    <!-- Main App Container -->
+    <div id="app">
+        <!-- Navbar 1: Upload CSV – Product Filter -->
+        <div id="navbar1-container" class="navbar-section" aria-label="Upload CSV - Filter Produk">
+            <!-- Content loaded dynamically -->
+        </div>
+
+        <!-- Navbar 2: Komreg – Shopee Komisi Recognition -->
+        <div id="navbar2-container" class="navbar-section" aria-label="KOMREG - Analisa Komisi Screenshot">
+            <!-- Content loaded dynamically -->
+        </div>
+
+        <!-- Navbar 3: Distribusi Link ke WhatsApp -->
+        <div id="navbar3-container" class="navbar-section" aria-label="Distribusi Link ke WhatsApp">
+            <!-- Content loaded dynamically -->
+        </div>
+    </div>
+
+    <!-- Load components first -->
+    <script>
+        // Helper to load HTML components
+        async function loadComponent(containerId, htmlPath) {
+            try {
+                const response = await fetch(htmlPath);
+                const html = await response.text();
+                document.getElementById(containerId).innerHTML = html;
+            } catch (error) {
+                console.error(`Error loading ${htmlPath}:`, error);
+            }
+        }
+        
+        // Load all components
+        async function initApp() {
+            await loadComponent('navbar1-container', 'components/navbar1.html');
+            await loadComponent('navbar2-container', 'components/navbar2.html');
+            await loadComponent('navbar3-container', 'components/navbar3.html');
+            
+            // After components loaded, init JavaScript
+            if (window.Navbar1) window.Navbar1.init();
+            if (window.Navbar2) window.Navbar2.init();
+            if (window.Navbar3) window.Navbar3.init();
+        }
+        
+        // Start when DOM ready
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+
+    <!-- JavaScript Modules -->
+    <script src="js/api-client.js"></script>
+    <script src="js/ui-helpers.js"></script>
+    <script src="js/validators.js"></script>
+    <script src="js/navbar1.js"></script>
+    <script src="js/navbar2.js"></script>
+    <script src="js/navbar3.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
